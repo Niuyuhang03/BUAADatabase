@@ -39,6 +39,11 @@
                     <input type="text" id="register_username" class="form-control" placeholder="请输入用户名">
                 </div>	
                 <br>
+				<div class="input-group">
+                    <span class="input-group-addon">用户性别</span>
+                    <input type="text" id="register_usersex" class="form-control" placeholder="请输入性别">
+                </div>
+                <br>
                 <div class="input-group">
                     <span class="input-group-addon">输入密码</span>
                     <input type="password" id="register_passwd" class="form-control" placeholder="请输入密码">
@@ -95,10 +100,11 @@
     console.log('hello,world');
     $('#register_sure').click(function(){
         let username = $('#register_username').val();
+        let usersex = $('#register_usersex').val();
         let passwd = $('#register_passwd').val();
         let passwd_s = $('#register_passed_again').val();
         console.log(username + " " + passwd + " " + passwd_s + " " + typeof(username));
-		if(username.length === 0 || passwd.length === 0 || passwd_s.length === 0){
+		if(username.length === 0 || passwd.length === 0 || passwd_s.length === 0 || usersex.length === 0){
 			alert("未填写用户名，密码或者确认密码");
 		}
 		else{
@@ -106,7 +112,7 @@
 				alert("两次密码输入不一致");
 			}
 			else{
-				var data = {"username":username, "passwd":passwd}
+				var data = {"username":username, "passwd":passwd, "usersex":usersex}
 				$.ajax({
 					type:"POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_register/",
@@ -148,6 +154,7 @@
 							alert('密码错误');
 						}
 						else{
+							console.log("fxxx");
 							window.location.href = "http://127.0.0.1:8000/ticket/home/";
 						}
 					}

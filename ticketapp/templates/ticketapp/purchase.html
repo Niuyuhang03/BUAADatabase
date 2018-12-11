@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>HOME</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+        .div_left { width: 28%; height: 100%; float:left; position: relative; }
+        .div_right { width: 72%; height: 100%; float:right; position: relative; }
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/personpage/">个人主页</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/release/">我发布的</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/purchase/">我购买的</a></li>
+				<button id="log_out" class="btn btn-primary" style="margin-top:8px">退出登录</button>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	
+	<div>
+
+	<div class="div_left">
+		<h1>用户信息栏</h1>
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<h2 id="user_id">用户id:</h2>
+		<h2 id="user_name">用户名称:</h2>
+		<h2 id="user_sex">用户性别:</h2>
+	</div>
+	
+	<div class="div_right">
+		<!--显示已购买的票-->
+		<div class="fluid" id="data">
+			<div class="col-xs-12 well">
+				<caption>搜索结果</caption>
+				<table id = "result_table" class="table table-bordered">
+					<thead id="thead">
+						<th>名称</th>
+						<th>时间</th>
+						<th>地点</th>
+						<th>价格</th>
+						<th>详情</th>
+					</thead>
+					
+				</table>
+			</div>
+		</div>
+		
+	</div>
+
+	</div>
+
+	
+
+	<script>
+		
+		var id;
+		$(function(){
+			$.ajax({
+				type: "GET",
+				url:"http://127.0.0.1:8000/ticket/ajax_showinfo/",
+				success: function(result){
+					//TODO:头像
+					console.log(result);
+					id = result['userid'];
+					$('#user_id').append(result['userid']);
+					$('#user_name').append(result['username']);
+					$('#user_sex').append(result['sex']);
+				}
+			});
+		});
+
+		$(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_query_purchase/",
+				dataType: "json",
+				data:JSON.stringify({"userid":id}),
+				success: function(result){
+					result_table = document.getElementById('result_table');
+					for(let i=0;i<result['info'].length;i++){
+						var child = document.createElement('tbody');
+						var th1 = document.createElement('th');
+						var th2 = document.createElement('th');
+						var th3 = document.createElement('th');
+						var th4 = document.createElement('th');
+						var th5 = document.createElement('th');
+						var indexinfo = document.createElement('a');
+						indexinfo.innerHTML = "详情";
+						indexinfo.setAttribute("href", "http://127.0.0.1:8000/ticket/index/id="+
+							result['info'][i]['id'] + "/");
+						th1.innerHTML = result['info'][i]['name'];
+						th2.innerHTML = result['info'][i]['time'];
+						th3.innerHTML = result['info'][i]['address'];
+						th4.innerHTML = result['info'][i]['money'];
+						th5.appendChild(indexinfo);
+						child.appendChild(th1);
+						child.appendChild(th2);
+						child.appendChild(th3);
+						child.appendChild(th4);
+						child.appendChild(th5);
+						result_table.appendChild(child);
+					}
+				}  
+			});
+		});
+		
+		//退出登录的click函数
+		$("#log_out").click(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_log_out/",
+				dataType: "json",
+				data:JSON.stringify({}),
+				success: function(result){
+					alert("你已退出登陆！");
+					window.location.href = "http://127.0.0.1:8000/ticket/sign/";
+				}  
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>DEMO</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+        .div_left { width: 28%; height: 100%; float:left; position: relative; }
+        .div_right { width: 72%; height: 100%; float:right; position: relative; }
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">二手购票</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="active"><a href="#">个人主页</a></li>
+				<li class="active"><a href="#">我发布的</a></li>
+				<li class="active"><a href="#">我购买的</a></li>
+				<button id="log_out" class="btn btn-primary" style="margin-top:8px">退出登录</button>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	
+	<div class="fluid" id="data">
+		<div class="col-xs-12 well">
+			<caption>搜索结果</caption>
+			<table class="table table-bordered">
+				<thead id="thead">
+					<th>名称</th>
+					<th>时间</th>
+					<th>详情</th>
+				</thead>
+				<tbody id="tbody1">
+					<th>话剧</th>
+					<th>2018.3.20</th>
+					<th>
+						<a href="http://www.baidu.com">详情</a>
+					</th>
+				</tbody>
+				<tbody id="tbody2">
+						<th>话剧</th>
+						<th>2018.3.20</th>
+						<th>
+							<a href="http://www.baidu.com">详情</a>
+						</th>
+					</tbody>
+			</table>
+		</div>
+	</div>
+	
+
+	<script>
+		
+		//TODO:ajax获取json
+		/*json格式应该为
+		{
+		"content":
+		[
+		{"name":"话剧","time":"2018.03.20"},
+		{"name":"体育", "time":"2018.04.30"}
+		]
+		}*/
+		var obj= {
+		"content":
+		[
+		{"name":"话剧","time":"2018.03.20"},
+		{"name":"体育", "time":"2018.04.30"}
+		]
+		};
+		
+		console.log(obj.content[0].name);	
+		//退出登录的click函数
+		$("#log_out").click(function(){
+			alert("你已退出登陆！");
+			window.location.href = "http://127.0.0.1:8000/ticket/sign/";
+		});
+	</script>
+</body>
+</html>

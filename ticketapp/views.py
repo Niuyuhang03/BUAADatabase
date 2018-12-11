@@ -12,29 +12,29 @@ def index(request, id):
         return HttpResponseRedirect("../../sign/")
 
 def home(request):
-    print (request.session.get('userid'))
-    if request.session.get('userid'):
+    print (request.session.get('username'))
+    if request.session.get('username'):
         return render(request, "ticketapp/home.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def personpage(request):
-    print(request.session.get('userid'))
-    if request.session.get('userid'):
+    print(request.session.get('username'))
+    if request.session.get('username'):
         return render(request, "ticketapp/personpage.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def release(request):
-    print(request.session.get('userid'))
-    if request.session.get('userid'):
+    print(request.session.get('username'))
+    if request.session.get('username'):
         return render(request, "ticketapp/release.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def purchase(request):
     print(request.session.get('username'))
-    if request.session.get('userid'):
+    if request.session.get('username'):
         return render(request, "ticketapp/purchase.html")
     else:
         return HttpResponseRedirect("../sign/")
@@ -53,6 +53,7 @@ def ajax_register(request):
             is_register = 1
             return HttpResponse(is_register)
         except:
+            models.user.objects.create(username=data['username'], userpwd=data['passwd'], usersex=data['usersex'])
             is_register = 0
             return HttpResponse(is_register)
 
@@ -65,11 +66,12 @@ def ajax_login(request):
             cur_user = models.user.objects.get(username=data['username'])
             if cur_user.userpwd == data['passwd']:
                 is_sign = 2
-                request.session['userid'] = data['userid']
+                request.session['username'] = data['username']
             else:
                 is_sign = 1
         except:
             is_sign = 0
+        print(is_sign)
         return HttpResponse(is_sign)
 
 def ajax_log_out(request):

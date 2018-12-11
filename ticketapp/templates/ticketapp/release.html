@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>HOME</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+        .div_left { width: 28%; height: 100%; float:left; position: relative; }
+        .div_right { width: 72%; height: 100%; float:right; position: relative; }
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/personpage/">个人主页</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/release/">我发布的</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/purchase/">我购买的</a></li>
+				<button id="log_out" class="btn btn-primary" style="margin-top:8px">退出登录</button>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	
+	<div>
+
+	<div class="div_left">
+		<h1>用户信息栏</h1>
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<h2 id="user_id">用户id:</h2>
+		<h2 id="user_name">用户名称:</h2>
+		<h2 id="user_sex">用户性别:</h2>
+	</div>
+	
+	<div class="div_right">
+		<div style="width:100%;height:100px;">
+				<div id="release" style="position:relative; left:600px; width: 100px;height: 50px">
+						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#release_Modal">
+							发布新商品
+						</button>
+					</div>
+					<!-- 模态框（Modal） -->
+					<div class="modal fade" id="release_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										&times;
+									</button>
+									<h4 class="modal-title" id="register_Label">
+										发布新商品
+									</h4>
+								</div>
+								<div class="modal-body">
+									<div class="input-group">
+										<span class="input-group-addon">名称</span>
+										<input type="text" id="good_name" class="form-control" placeholder="请输入商品名称">
+									</div>	
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">时间</span>
+										<input type="text" id="good_date" class="form-control" placeholder="请输入时间">
+									</div>
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">地点</span>
+										<input type="text" id="good_addr" class="form-control" placeholder="请输入地点">
+									</div>
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">价格</span>
+										<input type="text" id="good_prize" class="form-control" placeholder="请输入价格">
+									</div>
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">详细描述</span>
+										<input type="text" id="good_dec" class="form-control" placeholder="请输入详细描述">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+									</button>
+									<button type="button" id="release_sure" class="btn btn-primary">
+										发布
+									</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal -->
+					</div>
+		</div>
+
+		<div class="fluid" id="data">
+			<div class="col-xs-12 well">
+				<caption>搜索结果</caption>
+				<table id = "result_table" class="table table-bordered">
+					<thead id="thead">
+						<th>名称</th>
+						<th>时间</th>
+						<th>地点</th>
+						<th>价格</th>
+						<th>详情</th>
+					</thead>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+	
+
+	<script>
+		var id;
+		$(function(){
+			$.ajax({
+				type: "GET",
+				url:"http://127.0.0.1:8000/ticket/ajax_showinfo/",
+				success: function(result){
+					//TODO:头像
+					console.log(result);
+					id = result['userid'];
+					$('#user_id').append(result['userid']);
+					$('#user_name').append(result['username']);
+					$('#user_sex').append(result['sex']);
+				}
+			});
+		});
+		
+		$(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_query_release/",
+				dataType: "json",
+				data:JSON.stringify({"userid":id}),
+				success: function(result){
+					result_table = document.getElementById('result_table');
+					for(let i=0;i<result['info'].length;i++){
+						var child = document.createElement('tbody');
+						var th1 = document.createElement('th');
+						var th2 = document.createElement('th');
+						var th3 = document.createElement('th');
+						var th4 = document.createElement('th');
+						var th5 = document.createElement('th');
+						var indexinfo = document.createElement('a');
+						indexinfo.innerHTML = "详情";
+						indexinfo.setAttribute("href", "http://127.0.0.1:8000/ticket/index/id="+
+							result['info'][i]['id'] + "/");
+						th1.innerHTML = result['info'][i]['name'];
+						th2.innerHTML = result['info'][i]['time'];
+						th3.innerHTML = result['info'][i]['address'];
+						th4.innerHTML = result['info'][i]['money'];
+						th5.appendChild(indexinfo);
+						child.appendChild(th1);
+						child.appendChild(th2);
+						child.appendChild(th3);
+						child.appendChild(th4);
+						child.appendChild(th5);
+						result_table.appendChild(child);
+					}
+				}  
+			});
+		});
+
+
+		$('#release_sure').click(function(){
+			var name = $('#good_name').val();
+			var date = $('#good_date').val();
+			var addr = $('#good_addr').val();
+			var prize = $('#good_prize').val();
+			var dec = $('#good_dec').val();
+			if(name.length === 0 || date.length === 0 || addr.length === 0 || prize.length === 0 || dec.length === 0){
+				alert("请填入完整信息");
+			}
+			else{
+				$.ajax({
+					type: "POST",
+					url:"http://127.0.0.1:8000/ticket/ajax_release/",
+					dataType: "json",
+					data:JSON.stringify({"userid":id, "name":name, "date":date, "address":addr, "prize":prize, "dec":dec}),
+					success: function(result){
+						alert("发布成功");
+						window.location.href = "http://127.0.0.1:8000/ticket/release/";
+					}  
+				});
+			}
+		});
+
+		//退出登录的click函数
+		$("#log_out").click(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_log_out/",
+				dataType: "json",
+				data:JSON.stringify({}),
+				success: function(result){
+					alert("你已退出登陆！");
+					window.location.href = "http://127.0.0.1:8000/ticket/sign/";
+				}  
+			});
+		});
+	</script>
+</body>
+</html>
