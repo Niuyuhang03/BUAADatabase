@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>欢迎进入二手票务系统</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 按钮触发模态框 -->
+
+<div id="register" style="position:relative; left:1000px; top:200px; width: 100px;height: 50px">
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register_Modal">
+		注册
+	</button>
+</div>
+
+<div id="login" style="position:relative; left:1100px; top:150px; width: 100px;height: 50px">
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login_Modal">
+		登录
+	</button>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="register_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="register_Label">
+					注册用户
+				</h4>
+			</div>
+			<div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">用户名</span>
+                    <input type="text" id="register_username" class="form-control" placeholder="请输入用户名">
+                </div>	
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" id="register_passwd" class="form-control" placeholder="请输入密码">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">确认密码</span>
+                    <input type="password" id="register_passed_again" class="form-control" placeholder="请再次输入密码">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="register_sure" class="btn btn-primary">
+					Register
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="login_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="login_Label">
+					用户登录
+				</h4>
+			</div>
+			<div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">用户名</span>
+                    <input type="text" id="login_username" class="form-control" placeholder="请输入用户名">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" id="login_passwd" class="form-control" placeholder="请输入密码">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="login_sure" class="btn btn-primary">
+					Login
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<script>
+    console.log('hello,world');
+    $('#register_sure').click(function(){
+        let username = $('#register_username').val();
+        let passwd = $('#register_passwd').val();
+        let passwd_s = $('#register_passed_again').val();
+        console.log(username + " " + passwd + " " + passwd_s + " " + typeof(username));
+		if(username.length === 0 || passwd.length === 0 || passwd_s.length === 0){
+			alert("未填写用户名，密码或者确认密码");
+		}
+		else{
+			if(passwd !== passwd_s){
+				alert("两次密码输入不一致");
+			}
+			else{
+				var data = {"username":username, "passwd":passwd}
+				$.ajax({
+					type:"POST",
+					url:"http://127.0.0.1:8000/ticket/ajax_register/",
+					dataType:"json",
+					data:JSON.stringify(data), 
+					success:function(result){
+						if(result === 0){
+							alert("注册成功");
+						}
+						else
+							alert("该用户名已被注册");
+					}
+				});
+			}
+		}
+    });
+
+	$('#login_sure').click(function(){
+		let username = $('#login_username').val();
+		let passwd = $('#login_passwd').val();
+		console.log(username + " " + passwd);
+
+		if(username.length === 0 || passwd.length === 0){
+			alert("未填写用户名或者密码");
+		}
+		else{
+			var data = {"username":username, "passwd":passwd};
+			$.ajax({
+					type:"POST",
+					url:"http://127.0.0.1:8000/ticket/ajax_login/",
+					dataType:"json",
+					data:JSON.stringify(data),
+					success:function(result){
+						console.log(result['foo']);
+						window.location.href = "http://127.0.0.1:8000/ticket/index/"
+					}
+				});
+		}
+	});
+    
+</script>
+</body>
+</html>
