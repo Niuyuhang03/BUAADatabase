@@ -1,18 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <title>Index</title>
-   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="utf-8"> 
+	<title>INDEX</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+        .div_left { width: 28%; height: 100%; float:left; position: relative; }
+        .div_right { width: 72%; height: 100%; float:right; position: relative; }
+		.div_left_son {width: 50%; height: 100%; float: left; position: relative; background: tomato}
+		.div_right_son {width: 50%; height: 100%; float: right; position: relative; background: skyblue}
+    </style>
 </head>
+
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/personpage/">个人主页</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/release/">我发布的</a></li>
+				<li class="active"><a href="http://127.0.0.1:8000/ticket/purchase/">我购买的</a></li>
+				<button id="log_out" class="btn btn-primary" style="margin-top:8px">退出登录</button>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	
+	<div>
 
+	<div class="div_left">
+		<h1>用户信息栏</h1>
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<h2 id="user_id">用户id:</h2>
+		<h2 id="user_name">用户名称:</h2>
+		<h2 id="user_sex">用户性别:</h2>
+	</div>
+	
+	<div class="div_right">
+		<div style="visibility: visible; width:100%; height: 300px;">
+			<div class="div_left_son">
+				<img id="good_pic" src="http://127.0.0.1:8000/static/images/1.jpg" alt="商品图片" style="width:400px; height:200px">
+			</div>	
 
-<script>
-   console.log(window.innerHeight)//657
-   console.log(request.session.foo)
-</script>
+			<div class="div_right_son">
+				<h2 id="good_name">商品名称：</h2>
+				<h2 id="good_date">商品日期：</h2>
+				<h2 id="good_addr">商品地点：</h2>
+				<h2 id="good_prize">商品价格：</h2>
+			</div>
+
+		</div>
+		
+		<div style="width: 100%; height:100px; background: seagreen">
+			<p id="good_dec">商品描述：</p>
+		</div>
+		<button id="purchase" class="btn btn-primary" style="margin-left:100px; margin-top: 20px">购买</button>
+		
+	</div>
+
+	</div>
+
+	
+
+	<script>
+
+		//处理用户信息
+		var user_id, good_id;
+		var url;
+		$(function(){
+			$.ajax({
+				type: "GET",
+				url:"http://127.0.0.1:8000/ticket/ajax_showinfo/",
+				success: function(result){
+					//TODO:头像
+					console.log(result);
+					user_id = result['userid'];
+					$('#user_id').append(result['userid']);
+					$('#user_name').append(result['username']);
+					$('#user_sex').append(result['sex']);
+				}
+			});
+		});
+
+		//TODO:需要从数据库获取信息
+		url = window.location.href;
+		good_id = url.substr(url.indexOf("=")).split("/")[0].split("=")[1];
+		console.log(good_id);
+
+		$(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_goodinfo/",
+				dataType: "json",
+				data:JSON.stringify({"good_id":good_id}),
+				success: function(result){
+					$('#good_name').append(result['name']);
+					$('#good_date').append(result['date']);
+					$('#good_addr').append(result['address']);
+					$('#good_dec').append(result['dec']);
+					$('#good_prize').append(result['prize']);
+				}  
+			});
+		});
+		
+		//退出登录的click函数
+		$("#log_out").click(function(){
+			$.ajax({
+				type: "POST",
+				url:"http://127.0.0.1:8000/ticket/ajax_log_out/",
+				dataType: "json",
+				data:JSON.stringify({}),
+				success: function(result){
+					alert("你已退出登陆！");
+					window.location.href = "http://127.0.0.1:8000/ticket/sign/";
+				}  
+			});
+		});
+
+		$('#purchase').click(function(){
+			$.ajax({
+					type: "POST",
+					url:"http://127.0.0.1:8000/ticket/ajax_purchase/",
+					dataType: "json",
+					data:JSON.stringify({"user_id":user_id, "good_id": good_id}),
+					success: function(result){
+						//TODO:返回详细的信息
+						console.log(result);
+						if(result === 0){
+							alert("购买失败");
+						}
+						else{
+							alert("购买成功");
+						}
+					}  
+				});
+		});
+	</script>
 </body>
 </html>
