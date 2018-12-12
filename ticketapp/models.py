@@ -4,7 +4,7 @@ from django.db import models
 class user(models.Model):
     userid = models.AutoField(primary_key=True)
     username = models.CharField(unique=True, max_length=20)
-    usersex = models.CharField(null=True, max_length=2)
+    usersex = models.CharField(max_length=2)
     userpwd = models.CharField(max_length=20)
 
 class picture(models.Model):
@@ -17,6 +17,7 @@ class orderlist(models.Model):
 
 class ticket(models.Model):
     ticketid = models.AutoField(primary_key=True)
+    ticketname = models.CharField(max_length=40)
     ticketlocation = models.CharField(max_length=40)
     tickettime = models.CharField(max_length=20)
     ticketinfo = models.CharField(max_length=200)
@@ -30,3 +31,7 @@ class address(models.Model):
 class telephone(models.Model):
     teleid = models.AutoField(primary_key=True)
     teleinfo = models.CharField(max_length=40)
+
+class user_ticket(models.Model):
+    userid = models.IntegerField()
+    ticketid = models.IntegerField()

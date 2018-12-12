@@ -67,13 +67,13 @@
 					</div>
 					<div class="modal-body">
 						<div class="input-group">
-							<span class="input-group-addon">新性别</span>
-							<input type="text" id="new_gender" class="form-control" placeholder="请输入新的性别">
+							<span class="input-group-addon">新名称</span>
+							<input type="text" id="new_name" class="form-control" placeholder="请输入新的名称">
 						</div>
 						<br>
 						<div class="input-group">
-							<span class="input-group-addon">新名称</span>
-							<input type="text" id="new_name" class="form-control" placeholder="请输入新的名称">
+							<span class="input-group-addon">新性别</span>
+							<input type="text" id="new_gender" class="form-control" placeholder="请输入新的性别">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -108,6 +108,11 @@
 							<span class="input-group-addon">新密码</span>
 							<input type="password" id="new_passwd" class="form-control" placeholder="请输入新密码">
 						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">确认新密码</span>
+							<input type="password" id="new_passwd_s" class="form-control" placeholder="请再次输入新密码">
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -141,8 +146,6 @@
 				}
 			});
 		});
-		//TODO:获取用户id
-
 		$("#modi_info_sure").click(function(){
 			var sex = $('#new_gender').val();
 			var name = $('#new_name').val();
@@ -150,7 +153,7 @@
 				alert("未完整填写信息");
 			}
 			else{
-				data = {"userid":id, "sex":sex, "name":name};
+				data = {"sex":sex, "name":name};
 				$.ajax({
 					type:"POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_modi_info/",
@@ -159,8 +162,14 @@
 					success:function(result){
 						if(result === 1){
 							alert("修改成功");
+							window.location.href = "http://127.0.0.1:8000/ticket/personpage/";//刷新
 						}
-						window.location.href = "http://127.0.0.1:8000/ticket/personpage/";//刷新
+						else if(result === 0){
+							alert("用户名已存在，修改失败");
+						}
+						else{
+							alert("新用户名不能和当前用户名相同");
+						}
 					}
 				});
 			}
@@ -170,32 +179,37 @@
 		$("#passwd_sure").click(function(){
 			var old_passwd = $('#old_passwd').val();
 			var new_passwd = $('#new_passwd').val();
-			if(old_passwd.length === 0 || new_passwd.length === 0){
+			var new_passwd_s = $('#new_passwd_s').val();
+			if(old_passwd.length === 0 || new_passwd.length === 0 || new_passwd_s.length === 0){
 				alert("未完整填写！");
 			}
 			else{
-				if(old_passwd === new_passwd){
-					alert("新旧密码完全一样，还不如不改！");
+				if(new_passwd !== new_passwd_s){
+					alert("两次密码输入不一致！");
 				}
 				else{
-					data = {"userid":id, "old_passwd":old_passwd, "new_passwd":new_passwd};
-					$.ajax({
-						type:"POST",
-						url:"http://127.0.0.1:8000/ticket/ajax_modi_passwd/",
-						dataType:"json",
-						data:JSON.stringify(data), 
-						success:function(result){
-							if(result == 0){
-								alert("密码错误");
+					if(old_passwd === new_passwd){
+						alert("新旧密码完全一样，还不如不改！");
+					}
+					else{
+						data = {"old_passwd":old_passwd, "new_passwd":new_passwd};
+						$.ajax({
+							type:"POST",
+							url:"http://127.0.0.1:8000/ticket/ajax_modi_passwd/",
+							dataType:"json",
+							data:JSON.stringify(data),
+							success:function(result){
+								if(result == 0){
+									alert("原密码错误");
+								}
+								else{
+									alert("修改密码成功");
+									window.location.href = "http://127.0.0.1:8000/ticket/personpage/";//刷新
+								}
 							}
-							else{
-								alert("修改密码成功");
-							}
-							window.location.href = "http://127.0.0.1:8000/ticket/personpage/";//刷新
-						}
-					});
+						});
+					}
 				}
-
 			}
 		});
 		

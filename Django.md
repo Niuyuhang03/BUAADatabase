@@ -79,11 +79,11 @@ def xxx(request):
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_db',
+        'NAME': 'database_name',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'buaabvb09PULISIC',
+        'PASSWORD': 'xxx',
     }
 }
 
@@ -97,6 +97,11 @@ pymysql.install_as_MySQLdb()
 ```
 
 ## 数据库
+建立database
+
+``` mysql
+create database tickets;
+```
 
 生成数据表(通过django在msql中建立table)
 
@@ -122,11 +127,14 @@ python manage.py sqlmigrate app名 id
 编辑views.py
 from . import models
 title = request.POST.get('html_block_name', 'default_value')
-models.Article.objects.create(title=title) # 插入
-article = models.Article.objects.get(title='') # 查询一个
-articles = models.Article.objects.filter(title='')# 查询多个，返回一个列表
+models.Article.objects.create(title=title) # 插入方法一
+cur_ticket = models.ticket(title=title)
+cur_ticket.save() # 插入方法二，此方法可以获得自增主键cur_ticket.id
+article = models.Article.objects.get(title='') # 查询一个，在找不到或找到一个以上时会报错，可用try except判断
+articles = models.Article.objects.filter(title='')# 查询多个，返回一个列表，通过[]取到
 article = models.Article.objects.get(pk='') # 根据主码查询
 articles = models.Article.objects.all() # 查询所有
+models.Article.objects.filter(title='').update(content='a') # 更新
 models.Article.objects.get(title='').delete() # 删除
 models.Article.objects.all().delete() # 删除所有
 render(request, 'xxx.html', {'article':article}) # 将数据返回给html
@@ -156,4 +164,15 @@ python manage.py runserver [xxxx]端口可选，缺省默认8000
 
 ``` python
 浏览器输入localhost:xxxx/app1/
+```
+
+## ajax中跨域cors报错
+``` python
+settings.py中添加
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # 加在第一行
+    'django.middleware.security.SecurityMiddleware', # 加在第二行
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 ```

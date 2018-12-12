@@ -12,29 +12,29 @@ def index(request, id):
         return HttpResponseRedirect("../../sign/")
 
 def home(request):
-    print (request.session.get('username'))
-    if request.session.get('username'):
+    print (request.session.get('userid'))
+    if request.session.get('userid'):
         return render(request, "ticketapp/home.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def personpage(request):
-    print(request.session.get('username'))
-    if request.session.get('username'):
+    print(request.session.get('userid'))
+    if request.session.get('userid'):
         return render(request, "ticketapp/personpage.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def release(request):
-    print(request.session.get('username'))
-    if request.session.get('username'):
+    print(request.session.get('userid'))
+    if request.session.get('userid'):
         return render(request, "ticketapp/release.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def purchase(request):
-    print(request.session.get('username'))
-    if request.session.get('username'):
+    print(request.session.get('userid'))
+    if request.session.get('userid'):
         return render(request, "ticketapp/purchase.html")
     else:
         return HttpResponseRedirect("../sign/")
@@ -61,17 +61,16 @@ def ajax_login(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         # 查询数据库中用户表，用户名或者密码是否正确
-        # is_login= 2 #0 for no user, 1 for wrong passwd, 2 for ok
+        # is_login= 0 for no user, 1 for wrong passwd, 2 for ok
         try:
             cur_user = models.user.objects.get(username=data['username'])
             if cur_user.userpwd == data['passwd']:
                 is_sign = 2
-                request.session['username'] = data['username']
+                request.session['userid'] = cur_user.userid
             else:
                 is_sign = 1
         except:
             is_sign = 0
-        print(is_sign)
         return HttpResponse(is_sign)
 
 def ajax_log_out(request):
@@ -81,9 +80,8 @@ def ajax_log_out(request):
 
 def ajax_showinfo(request):
     if request.method == 'GET':
-        # TODO:根据session中的信息去查找
-
-        return_data = {'userid':"001", "username":"xiaoxin", "sex":"male"}
+        cur_user = models.user.objects.get(userid=request.session['userid'])
+        return_data = {'userid':cur_user.username, "username":cur_user.username, "sex":cur_user.usersex}
         return JsonResponse(return_data)
 
 def ajax_search(request):
@@ -111,7 +109,7 @@ def ajax_goodinfo(request):
         #TODO:根据goodid查询信息
 
         return_data = {
-            "name": "话剧票", "date": "2018.12.12", "address": "北航", "dec": "就是一张票子", "prize": "200"
+            "name": "话剧票", "date": "2018.12.12", "address": "北航", "dec": "就是一张票子", "price": "200"
         }
         return JsonResponse(return_data)
 
@@ -130,19 +128,28 @@ def ajax_purchase(request):
 def ajax_modi_info(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-
-        #TODO:
-
-        succ = 1
+        # succ = 1:修改成功 0:用户名已存在，修改失败 2:新用户名和当前用户名相同，修改失败
+        try:
+            cur_user = models.user.objects.get(username=data['name'])
+            if request.session.get('userid') == cur_user.userid:
+                succ = 2
+            else:
+                succ = 0
+        except:
+            succ = 1
+            models.user.objects.filter(pk=request.session.get('userid')).update(usersex=data['sex'], username=data['name'])
         return HttpResponse(succ)
 
 def ajax_modi_passwd(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-
-        #TODO
-
-        succ = 1
+        #succ = 0:密码错误 1:修改成功
+        cur_user = models.user.objects.get(pk=request.session.get('userid'))
+        if cur_user.userpwd != data['old_passwd']:
+            succ = 0
+        else:
+            succ = 1
+            models.user.objects.filter(pk=request.session.get('userid')).update(userpwd=data['new_passwd'])
         return HttpResponse(succ)
 
 def ajax_query_purchase(request):
@@ -163,29 +170,23 @@ def ajax_query_purchase(request):
 def ajax_query_release(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-
+        return_data = {"info": []}
         # TODO:
-
-        return_data = {
-            "info": [
-                {"id": "1", "name": "话剧", "time": "2018.12.12", "address": "晨兴", "money": "100"},
-                {"id": "2", "name": "足球", "time": "2018.12.13", "address": "足球场", "money": "200"},
-                {"id": "3", "name": "篮球", "time": "2018.12.14", "address": "篮球场", "money": "300"}
-            ]
-        }
+        my_tickets_id = models.user_ticket.objects.filter(userid=request.session.get('userid'))
+        for my_ticket_id in my_tickets_id:
+            my_ticket = models.ticket.objects.get(ticketid=my_ticket_id.ticketid)
+            return_data['info'].append({"id":my_ticket.ticketid, "name":my_ticket.ticketname, "time":my_ticket.tickettime, "address":my_ticket.ticketlocation, "money":my_ticket.ticketprice})
+        print(return_data)
         return JsonResponse(return_data)
 
 def ajax_release(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-        userid = data['userid']
-        name = data['name']
-        date = data['date']
-        addr = data['address']
-        prize = data['prize']
-        dec = data['dec']
-
-        #TODO
-
+        cur_ticket = models.ticket(ticketname=data['name'], ticketlocation=data['address'], tickettime=data['date'], ticketinfo=data['dec'], ticketprice=data['price'], ticketstatus=0)
+        cur_ticket.save()
+        print("info:")
+        print(request.session.get('userid'))
+        print(cur_ticket.ticketid)
+        models.user_ticket.objects.create(userid=request.session.get('userid'), ticketid=cur_ticket.ticketid)
         succ = 1
         return HttpResponse(succ)

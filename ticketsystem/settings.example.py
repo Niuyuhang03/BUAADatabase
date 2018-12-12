@@ -112,13 +112,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE='zh_Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -130,3 +130,5 @@ os.path.join(BASE_DIR, "ticketapp/static")
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
