@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ccad2a69-00f1-4110-8d42-b43a34f51c1e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ticketapp/static/images/1.JPG" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="680184416">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.4" value="4" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.opened" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="4" />
+          <entry key="py" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Git file" value="1" />
+          <entry key="HTML" value="52" />
+          <entry key="Python" value="45" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="28" />
+          <entry key="py" value="200" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Git file" value="20" />
+          <entry key="HTML" value="1171" />
+          <entry key="PLAIN_TEXT" value="161" />
+          <entry key="Python" value="3772" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ticketapp/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="181" column="32" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ticketapp/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ticket</find>
+      <find>LANG</find>
+      <find>sta</find>
+      <find>BASE_DIR</find>
+      <find>id</find>
+      <find>allo</find>
+      <find>cors</find>
+      <find>'django.middleware.common.CommonMiddleware',</find>
+      <find>session</find>
+      <find>session.get('userid</find>
+      <find>time</find>
+      <find>USE_TZ</find>
+      <find>SESSION_COOKIE_HTTPONLY</find>
+      <find>print</find>
+      <find>session[</find>
+      <find>good_id</find>
+      <find>prize</find>
+      <find>windo</find>
+      <find>win</find>
+      <find>person</find>
+      <find>home</find>
+      <find>wind</find>
+      <find>input</find>
+      <find>orderi</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ticketapp/templates/index.html" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/sign.html" />
+        <option value="$PROJECT_DIR$/ticketsystem/__init__.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/ticketapp/admin.py" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/sign.html" />
+        <option value="$PROJECT_DIR$/ticketsystem/settings.py" />
+        <option value="$PROJECT_DIR$/ticketsystem/urls.py" />
+        <option value="$PROJECT_DIR$/ticketsystem/settings.example.py" />
+        <option value="$PROJECT_DIR$/ticketapp/urls.py" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html" />
+        <option value="$PROJECT_DIR$/ticketapp/models.py" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html" />
+        <option value="$PROJECT_DIR$/ticketapp/views.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="950" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="add_unversioned_files" value="true&#10;F:/BUAA/数据库/课设/任务2/ticketsystem/ticketsystem/settings.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\BUAA\数据库\课设\任务2\ticketsystem\ticketsystem" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ccad2a69-00f1-4110-8d42-b43a34f51c1e" name="Default Changelist" comment="" />
+      <created>1543926169815</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543926169815</updated>
+    </task>
+    <task id="LOCAL-00001" summary="update markdown about django,js and mysql">
+      <created>1544509288425</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544509288425</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update markdown about django,js and mysql">
+      <created>1544509524202</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544509524202</updated>
+    </task>
+    <task id="LOCAL-00003" summary="nothing commit">
+      <created>1544509576925</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1544509576925</updated>
+    </task>
+    <task id="LOCAL-00004" summary="???sbnyh">
+      <created>1544510888108</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1544510888108</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix bugs about cors">
+      <created>1544544613215</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1544544613215</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix bugs about session">
+      <created>1544546088622</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1544546088622</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update sign, personpage, release and home">
+      <created>1544634021881</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544634021881</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update img">
+      <created>1544719606137</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1544719606137</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18295905" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.4993395" weight="0.2496454" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5006605" side_tool="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Python Console" order="2" weight="0.32907802" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32907802" />
+      <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="6" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update markdown about django,js and mysql" />
+    <MESSAGE value="nothing commit" />
+    <MESSAGE value="???sbnyh" />
+    <MESSAGE value="fix bugs about cors" />
+    <MESSAGE value="fix bugs about session" />
+    <MESSAGE value="update sign, personpage, release and home" />
+    <MESSAGE value="update img" />
+    <option name="LAST_COMMIT_MESSAGE" value="update img" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/index.html" />
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/sign.html" />
+    <entry file="file://$PROJECT_DIR$/ticketsystem/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-660" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/migrations/0002_auto_20181211_1710.py" />
+    <entry file="file://$PROJECT_DIR$/ticketapp/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python36/Lib/site-packages/django/conf/urls/static.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1347" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketsystem/settings.example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="128" column="42" selection-start-line="128" selection-start-column="42" selection-end-line="128" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketsystem/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="127" selection-start-line="127" selection-end-line="129" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketsystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding>
+            <element signature="e#636#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="36" column="88" selection-start-line="36" selection-start-column="88" selection-end-line="36" selection-end-column="88" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="36" column="84" selection-start-line="36" selection-start-column="84" selection-end-line="36" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/sign.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="124" column="85" selection-start-line="124" selection-start-column="85" selection-end-line="124" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="209" column="46" lean-forward="true" selection-start-line="209" selection-start-column="46" selection-end-line="209" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="168" column="73" lean-forward="true" selection-start-line="166" selection-start-column="16" selection-end-line="168" selection-end-column="73" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-25">
+          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="181" column="32" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
