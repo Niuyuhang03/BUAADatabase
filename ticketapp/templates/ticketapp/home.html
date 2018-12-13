@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"> 
-	<title>HOME</title>
+	<title>二手票务交易网</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手票务交易网</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav pull-right">
@@ -34,7 +34,7 @@
 
 		<div class="div_left">
 			<h1>用户信息栏</h1>
-			<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+			<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
 			<h2 id="user_id">用户ID:</h2>
 			<h2 id="user_name">用户名称:</h2>
 			<h2 id="user_sex">用户性别:</h2>
@@ -62,6 +62,7 @@
 								<th>价格</th>
 								<th>详情</th>
 							</thead>
+							<tbody id="tbodyid"></tbody>
 						</table>
 					</div>
 				</div>
@@ -87,6 +88,7 @@
 					$('#user_id').append(result['userid']);
 					$('#user_name').append(result['username']);
 					$('#user_sex').append(result['sex']);
+					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
@@ -96,8 +98,11 @@
 		$('#search_btn').click(function(){
 			var info = $('#search_info').val();
 			console.log(info);
+			var result_table = document.getElementById('result_table');
+            result_table.innerHTML = "";
+			console.log(info.length);
 			if(info.length === 0){
-				alert("搜索前请输入信息");
+				alert("搜索信息不能为空");
 			}
 			else{
 				var data = {'info':info};
@@ -118,7 +123,25 @@
 							none_result_div.style.visibility = "visible";
 						}
 						else{
-							result_table = document.getElementById('result_table');
+							var head = document.createElement('thead');
+                            var hth1 = document.createElement('th');
+                            var hth2 = document.createElement('th');
+                            var hth3 = document.createElement('th');
+                            var hth4 = document.createElement('th');
+                            var hth5 = document.createElement('th');
+                            hth1.innerHTML = '名称';
+                            hth2.innerHTML = '时间';
+                            hth3.innerHTML = '地点';
+                            hth4.innerHTML = '价格';
+                            hth5.innerHTML = '详情';
+                            head.appendChild(hth1);
+                            head.appendChild(hth2);
+                            head.appendChild(hth3);
+                            head.appendChild(hth4);
+                            head.appendChild(hth5);
+                            result_table.appendChild(head);
+
+							// result_table = document.getElementById('result_table');
 							for(let i=0;i<result['info'].length;i++){
 								var child = document.createElement('tbody');
 								var th1 = document.createElement('th');

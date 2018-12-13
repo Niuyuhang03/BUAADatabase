@@ -1,3 +1,7 @@
+import datetime
+import os
+
+from django.db.models import Q
 from django.shortcuts import render
 import json
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
@@ -81,48 +85,47 @@ def ajax_log_out(request):
 def ajax_showinfo(request):
     if request.method == 'GET':
         cur_user = models.user.objects.get(userid=request.session['userid'])
-        return_data = {'userid':cur_user.username, "username":cur_user.username, "sex":cur_user.usersex}
+        return_data = {'userid':cur_user.username, "username":cur_user.username, "sex":cur_user.usersex, "userimg":cur_user.userimg}
         return JsonResponse(return_data)
 
 def ajax_search(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-        print(data['info'])
-
-        #TODO:根据info去商品数据库寻找信息
-
-        return_data = {
-            "info": [
-                {"id": "1", "name": "话剧", "time": "2018.12.12", "address": "晨兴", "money": "100"},
-                {"id": "2", "name": "足球", "time": "2018.12.13", "address": "足球场", "money": "200"},
-                {"id": "3", "name": "篮球", "time": "2018.12.14", "address": "篮球场", "money": "300"}
-            ]
-        }
-
+        return_data = {"info": []}
+        tickets = models.ticket.objects.filter(Q(ticketname__icontains=data['info'])|Q(ticketinfo__icontains=data['info'])|Q(ticketlocation__icontains=data['info']))
+        for my_ticket in tickets:
+            if my_ticket.ticketstatus == 0:
+                return_data['info'].append({"id":my_ticket.ticketid, "name":my_ticket.ticketname, "time":my_ticket.tickettime, "address":my_ticket.ticketlocation, "money":my_ticket.ticketprice})
         return JsonResponse(return_data)
 
 def ajax_goodinfo(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-        print(data['good_id'])
-        good_id = data['good_id']
-        #TODO:根据goodid查询信息
-
+        cur_ticket = models.ticket.objects.get(ticketid=data['good_id'])
+        print("status")
+        print(cur_ticket.ticketstatus)
         return_data = {
-            "name": "话剧票", "date": "2018.12.12", "address": "北航", "dec": "就是一张票子", "price": "200"
+            "name": cur_ticket.ticketname, "date": cur_ticket.tickettime, "address": cur_ticket.ticketlocation, "dec": cur_ticket.ticketinfo, "price": cur_ticket.ticketprice, "status": cur_ticket.ticketstatus, "img": cur_ticket.ticketimg
         }
         return JsonResponse(return_data)
 
 def ajax_purchase(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-
-        user_id = data['user_id']
-        good_id = data['good_id']
-
-        #TODO
-
-        succ = 1
+        cur_ticket = models.ticket.objects.get(ticketid=data['good_id'])
+        if cur_ticket.ticketstatus == 0:
+            if models.user_ticket.objects.get(ticketid=cur_ticket.ticketid).userid == request.session.get('userid'):
+                succ = 0
+            else:
+                models.ticket.objects.filter(ticketid=data['good_id']).update(ticketstatus=1)
+                print(datetime.datetime.now())
+                cur_order = models.orderlist(ordertime=datetime.datetime.now())
+                cur_order.save()
+                models.user_order.objects.create(userid=request.session.get('userid'), orderid=cur_order.orderid)
+                models.ticket_order.objects.create(ticketid=data['good_id'], orderid=cur_order.orderid)
+                succ = 1
+        else:
+            succ = 2
         return HttpResponse(succ)
 
 def ajax_modi_info(request):
@@ -155,38 +158,66 @@ def ajax_modi_passwd(request):
 def ajax_query_purchase(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-
-        #TODO:
-
-        return_data = {
-            "info": [
-                {"id": "1", "name": "话剧", "time": "2018.12.12", "address": "晨兴", "money": "100"},
-                {"id": "2", "name": "足球", "time": "2018.12.13", "address": "足球场", "money": "200"},
-                {"id": "3", "name": "篮球", "time": "2018.12.14", "address": "篮球场", "money": "300"}
-            ]
-        }
+        return_data = {"info": []}
+        my_orders_id = models.user_order.objects.filter(userid=request.session.get('userid'))
+        for my_order_id in my_orders_id:
+            my_order = models.orderlist.objects.get(orderid=my_order_id.orderid)
+            my_ticket = models.ticket.objects.get(ticketid=(models.ticket_order.objects.get(orderid=my_order.orderid).ticketid))
+            return_data['info'].append(
+                {"id": my_ticket.ticketid, "name": my_ticket.ticketname, "time": my_ticket.tickettime,
+                 "address": my_ticket.ticketlocation, "money": my_ticket.ticketprice})
         return JsonResponse(return_data)
 
 def ajax_query_release(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         return_data = {"info": []}
-        # TODO:
         my_tickets_id = models.user_ticket.objects.filter(userid=request.session.get('userid'))
         for my_ticket_id in my_tickets_id:
             my_ticket = models.ticket.objects.get(ticketid=my_ticket_id.ticketid)
             return_data['info'].append({"id":my_ticket.ticketid, "name":my_ticket.ticketname, "time":my_ticket.tickettime, "address":my_ticket.ticketlocation, "money":my_ticket.ticketprice})
-        print(return_data)
         return JsonResponse(return_data)
 
 def ajax_release(request):
     if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
-        cur_ticket = models.ticket(ticketname=data['name'], ticketlocation=data['address'], tickettime=data['date'], ticketinfo=data['dec'], ticketprice=data['price'], ticketstatus=0)
+        cur_ticket = models.ticket(ticketname=request.POST.get('name'), ticketlocation=request.POST.get('addr'), tickettime=request.POST.get('date'), ticketinfo=request.POST.get('dec'), ticketprice=request.POST.get('price'), ticketstatus=0)
         cur_ticket.save()
-        print("info:")
-        print(request.session.get('userid'))
-        print(cur_ticket.ticketid)
+
+        file_obj = request.FILES.get('file')
+        if file_obj:  # 处理附件上传到方法
+            request_set = {}
+            print('file--obj', file_obj)
+            # user_home_dir = "upload/%s" % (request.user.userprofile.id)
+            accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/ticketImages'
+            # if not os.path.isdir(accessory_dir):
+            #     os.mkdir(accessory_dir)
+            upload_file = "%s/%s" % (accessory_dir, str(cur_ticket.ticketid) + ".JPG")
+            recv_size = 0
+            f = open(upload_file, 'wb')
+            for chunk in file_obj.chunks():
+                f.write(chunk)
+            f.close()
+        models.ticket.objects.filter(ticketid=cur_ticket.ticketid).update(ticketimg=str(cur_ticket.ticketid) + ".JPG")
         models.user_ticket.objects.create(userid=request.session.get('userid'), ticketid=cur_ticket.ticketid)
         succ = 1
         return HttpResponse(succ)
+
+
+def ajax_uploadimg(request):
+    if request.method == 'POST':
+        file_obj = request.FILES.get('file')
+        if file_obj:  # 处理附件上传到方法
+            request_set = {}
+            print('file--obj', file_obj)
+            # user_home_dir = "upload/%s" % (request.user.userprofile.id)
+            accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/userImages'
+            # if not os.path.isdir(accessory_dir):
+            #     os.mkdir(accessory_dir)
+            upload_file = "%s/%s" % (accessory_dir, str(request.session.get('userid'))+".JPG")
+            recv_size = 0
+            f = open(upload_file, 'wb')
+            for chunk in file_obj.chunks():
+                f.write(chunk)
+            f.close()
+            models.user.objects.filter(userid=request.session.get('userid')).update(userimg=str(request.session.get('userid'))+".JPG")
+            return HttpResponse(1)

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"> 
-	<title>HOME</title>
+	<title>我发布的</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手票务交易网</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav pull-right">
@@ -34,7 +34,7 @@
 
 	<div class="div_left">
 		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
 		<h2 id="user_id">用户id:</h2>
 		<h2 id="user_name">用户名称:</h2>
 		<h2 id="user_sex">用户性别:</h2>
@@ -84,6 +84,11 @@
 										<span class="input-group-addon">详细描述</span>
 										<input type="text" id="good_dec" class="form-control" placeholder="请输入详细描述">
 									</div>
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">上传图片</span>
+										<input type="file" id="good_img" class="form-control" placeholder="请上传图片">
+									</div>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -131,6 +136,7 @@
 					$('#user_id').append(result['userid']);
 					$('#user_name').append(result['username']);
 					$('#user_sex').append(result['sex']);
+					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
@@ -172,20 +178,33 @@
 
 
 		$('#release_sure').click(function(){
+			var form_data = new FormData();
+
 			var name = $('#good_name').val();
 			var date = $('#good_date').val();
 			var addr = $('#good_addr').val();
 			var price = $('#good_price').val();
 			var dec = $('#good_dec').val();
+			var file_info = $('#good_img')[0].files[0];
+			form_data.append('file',file_info);
+			form_data.append('name',name);
+			form_data.append('date',date);
+			form_data.append('addr',addr);
+			form_data.append('price',price);
+			form_data.append('dec',dec);
 			if(name.length === 0 || date.length === 0 || addr.length === 0 || price.length === 0 || dec.length === 0){
 				alert("请填入完整信息");
+			}
+			else if (!(/(^[0-9]*[1-9][0-9]*$)/.test(price))) {
+				alert("价格应为正整数");
 			}
 			else{
 				$.ajax({
 					type: "POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_release/",
-					dataType: "json",
-					data:JSON.stringify({"name":name, "date":date, "address":addr, "price":price, "dec":dec}),
+					data: form_data,
+                	processData: false,  // tell jquery not to process the data
+                	contentType: false, // tell jquery not to set contentType
 					success: function(result){
 						alert("发布成功");
 						window.location.href = "http://127.0.0.1:8000/ticket/release/";

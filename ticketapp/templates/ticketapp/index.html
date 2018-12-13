@@ -36,7 +36,7 @@
 
 	<div class="div_left">
 		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
 		<h2 id="user_id">用户id:</h2>
 		<h2 id="user_name">用户名称:</h2>
 		<h2 id="user_sex">用户性别:</h2>
@@ -45,14 +45,14 @@
 	<div class="div_right">
 		<div style="visibility: visible; width:100%; height: 300px;">
 			<div class="div_left_son">
-				<img id="good_pic" src="http://127.0.0.1:8000/static/images/1.jpg" alt="商品图片" style="width:400px; height:200px">
+				<img id="good_pic" src="http://127.0.0.1:8000/static/images/ticketImages/0.jpg" alt="商品图片" style="width:400px; height:200px">
 			</div>	
 
 			<div class="div_right_son">
 				<h2 id="good_name">商品名称：</h2>
 				<h2 id="good_date">商品日期：</h2>
 				<h2 id="good_addr">商品地点：</h2>
-				<h2 id="good_prize">商品价格：</h2>
+				<h2 id="good_price">商品价格：</h2>
 			</div>
 
 		</div>
@@ -60,7 +60,7 @@
 		<div style="width: 100%; height:100px; background: seagreen">
 			<p id="good_dec">商品描述：</p>
 		</div>
-		<button id="purchase" class="btn btn-primary" style="margin-left:100px; margin-top: 20px">购买</button>
+		<button id="purchase" class="btn btn-primary" style="margin-left:100px; margin-top: 20px; visibility: hidden">购买</button>
 		
 	</div>
 
@@ -84,6 +84,7 @@
 					$('#user_id').append(result['userid']);
 					$('#user_name').append(result['username']);
 					$('#user_sex').append(result['sex']);
+					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
@@ -92,6 +93,10 @@
 		url = window.location.href;
 		good_id = url.substr(url.indexOf("=")).split("/")[0].split("=")[1];
 		console.log(good_id);
+
+
+
+
 
 		$(function(){
 			$.ajax({
@@ -104,7 +109,12 @@
 					$('#good_date').append(result['date']);
 					$('#good_addr').append(result['address']);
 					$('#good_dec').append(result['dec']);
-					$('#good_prize').append(result['prize']);
+					$('#good_price').append(result['price']);
+					$('#good_pic').attr('src', 'http://127.0.0.1:8000/static/images/ticketImages/'+result['img']);
+					var is_hidden = result['status'];
+					if(is_hidden === 0) {
+						document.getElementById('purchase').style.visibility = "visible";
+					}
 				}  
 			});
 		});
@@ -128,12 +138,15 @@
 					type: "POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_purchase/",
 					dataType: "json",
-					data:JSON.stringify({"user_id":user_id, "good_id": good_id}),
+					data:JSON.stringify({"good_id": good_id}),
 					success: function(result){
 						//TODO:返回详细的信息
 						console.log(result);
 						if(result === 0){
-							alert("购买失败");
+							alert("购买失败，当前商品由您发布");
+						}
+						else if (result === 2) {
+							alert("购买失败，当前商品已售出");
 						}
 						else{
 							alert("购买成功");

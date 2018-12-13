@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"> 
-	<title>PERSONPAGE</title>
+	<title>个人主页</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手购票</a>
+			<a class="navbar-brand" href="http://127.0.0.1:8000/ticket/home/">二手票务交易网</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav pull-right">
@@ -34,7 +34,7 @@
 
 	<div class="div_left">
 		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/1.jpg" style="width:200px; height:100px" alt="头像">
+		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
 		<h2 id="user_id">用户id:</h2>
 		<h2 id="user_name">用户名称:</h2>
 		<h2 id="user_sex">用户性别:</h2>
@@ -52,7 +52,10 @@
 				修改密码
 			</button>
 		</div>
-
+		<div class="form-group">
+			<input  type="file" name="file" id="file_upload">
+			<button id="uploadimg"  type="button" class="btn btn-default">开始上传附件</button>
+		</div>
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="info_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -143,9 +146,34 @@
 					$('#user_id').append(result['userid']);
 					$('#user_name').append(result['username']);
 					$('#user_sex').append(result['sex']);
+					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
+
+		$("#uploadimg").click(function(){
+			var form_data = new FormData();
+            var file_info = $('#file_upload')[0].files[0];
+            form_data.append('file',file_info);
+            //if(file_info==undefined)暂且不许要判断是否有附件
+                //alert('你没有选择任何文件');
+                //return false
+            //}
+
+            // 提交ajax的请求
+            $.ajax({
+                url:"http://127.0.0.1:8000/ticket/ajax_uploadimg/",
+                type:'POST',
+                data: form_data,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+                success: function(callback) {
+					window.location.href = "http://127.0.0.1:8000/ticket/personpage/";
+
+                }
+            }); // end ajax
+		});
+
 		$("#modi_info_sure").click(function(){
 			var sex = $('#new_gender').val();
 			var name = $('#new_name').val();

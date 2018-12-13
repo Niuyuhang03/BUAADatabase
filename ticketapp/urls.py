@@ -22,4 +22,5 @@ urlpatterns =[
     path('ajax_query_purchase/', views.ajax_query_purchase, name='ajax_query_purchase'),
     path('ajax_query_release/', views.ajax_query_release, name='ajax_query_release'),
     path('ajax_release/', views.ajax_release, name='ajax_release'),
+    path('ajax_uploadimg/', views.ajax_uploadimg, name='ajax_uploadimg'),
 ]
