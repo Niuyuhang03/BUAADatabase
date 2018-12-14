@@ -4,6 +4,7 @@
 	<meta charset="utf-8"> 
 	<title>我购买的</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://127.0.0.1:8000/static/css/style.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -33,11 +34,19 @@
 	<div>
 
 	<div class="div_left">
-		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
-		<h2 id="user_id">用户id:</h2>
-		<h2 id="user_name">用户名称:</h2>
-		<h2 id="user_sex">用户性别:</h2>
+		<div class="box">
+            <ul>
+                <li>
+					<img id="userpic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" width="190" height="190" alt="">
+                    <div class="cover">
+                        <h4 id="username"></h4>
+                        <h4 id="usersex"></h4>
+						<h4 id="useraddr"></h4>
+						<h4 id="usertele"></h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
 	</div>
 	
 	<div class="div_right">
@@ -75,10 +84,11 @@
 					//TODO:头像
 					console.log(result);
 					id = result['userid'];
-					$('#user_id').append(result['userid']);
-					$('#user_name').append(result['username']);
-					$('#user_sex').append(result['sex']);
-					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
+					$('#username').append(result['username']);
+					$('#usersex').append(result['sex']);
+					$('#useraddr').append(result['addr']);
+					$('#usertele').append(result['tele']);
+					$('#userpic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});

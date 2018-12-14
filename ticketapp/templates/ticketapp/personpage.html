@@ -4,6 +4,7 @@
 	<meta charset="utf-8"> 
 	<title>个人主页</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://127.0.0.1:8000/static/css/style.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -11,6 +12,7 @@
         .div_left { width: 28%; height: 100%; float:left; position: relative; }
         .div_right { width: 72%; height: 100%; float:right; position: relative; }
     </style>
+
 </head>
 
 <body>
@@ -33,11 +35,20 @@
 	<div>
 
 	<div class="div_left">
-		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
-		<h2 id="user_id">用户id:</h2>
-		<h2 id="user_name">用户名称:</h2>
-		<h2 id="user_sex">用户性别:</h2>
+
+		<div class="box">
+            <ul>
+                <li>
+					<img id="userpic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" width="190" height="190" alt="">
+                    <div class="cover">
+                        <h4 id="username"></h4>
+                        <h4 id="usersex"></h4>
+						<h4 id="useraddr"></h4>
+						<h4 id="usertele"></h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
 	</div>
 	
 	<div class="div_right">
@@ -51,10 +62,6 @@
 			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#passwd_Modal">
 				修改密码
 			</button>
-		</div>
-		<div class="form-group">
-			<input  type="file" name="file" id="file_upload">
-			<button id="uploadimg"  type="button" class="btn btn-default">开始上传附件</button>
 		</div>
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="info_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -77,6 +84,21 @@
 						<div class="input-group">
 							<span class="input-group-addon">新性别</span>
 							<input type="text" id="new_gender" class="form-control" placeholder="请输入新的性别">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">新地址</span>
+							<input type="text" id="new_addr" class="form-control" placeholder="请输入新的地址">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">新联系方式</span>
+							<input type="text" id="new_tele" class="form-control" placeholder="请输入新的联系方式">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">上传图片</span>
+							<input type="file" id="good_img" class="form-control" placeholder="请上传图片">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -143,60 +165,51 @@
 					//TODO:头像
 					console.log(result);
 					id = result['userid'];
-					$('#user_id').append(result['userid']);
-					$('#user_name').append(result['username']);
-					$('#user_sex').append(result['sex']);
-					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
+					$('#username').append(result['username']);
+					$('#usersex').append(result['sex']);
+					$('#useraddr').append(result['addr']);
+					$('#usertele').append(result['tele']);
+					$('#userpic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
 
-		$("#uploadimg").click(function(){
-			var form_data = new FormData();
-            var file_info = $('#file_upload')[0].files[0];
-            form_data.append('file',file_info);
-            //if(file_info==undefined)暂且不许要判断是否有附件
-                //alert('你没有选择任何文件');
-                //return false
-            //}
-
-            // 提交ajax的请求
-            $.ajax({
-                url:"http://127.0.0.1:8000/ticket/ajax_uploadimg/",
-                type:'POST',
-                data: form_data,
-                processData: false,  // tell jquery not to process the data
-                contentType: false, // tell jquery not to set contentType
-                success: function(callback) {
-					window.location.href = "http://127.0.0.1:8000/ticket/personpage/";
-
-                }
-            }); // end ajax
-		});
-
 		$("#modi_info_sure").click(function(){
+			var form_data = new FormData();
+			var file_info = $('#good_img')[0].files[0];
 			var sex = $('#new_gender').val();
 			var name = $('#new_name').val();
-			if(sex.length === 0 || name.length === 0){
+			var addr = $('#new_addr').val();
+			var tele = $('#new_tele').val();
+			form_data.append('file',file_info);
+			form_data.append('sex',sex);
+			form_data.append('name',name);
+			form_data.append('addr',addr);
+			form_data.append('tele',tele);
+			if(sex.length == 0 || name.length == 0 || addr.length == 0 || tele.length == 0){
 				alert("未完整填写信息");
 			}
 			else{
-				data = {"sex":sex, "name":name};
+				data = {"sex":sex, "name":name, "addr":addr, "tele":tele};
 				$.ajax({
 					type:"POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_modi_info/",
-					dataType:"json",
-					data:JSON.stringify(data), 
+					data: form_data,
+                	processData: false,  // tell jquery not to process the data
+                	contentType: false, // tell jquery not to set contentType
 					success:function(result){
-						if(result === 1){
+						if(result == 1){
 							alert("修改成功");
 							window.location.href = "http://127.0.0.1:8000/ticket/personpage/";//刷新
 						}
-						else if(result === 0){
-							alert("用户名已存在，修改失败");
-						}
-						else{
-							alert("新用户名不能和当前用户名相同");
+						else {
+							if(result == 0){
+								alert("用户名已存在，修改失败");
+							}
+							else{
+								console.log(result)
+								alert("新用户名不能和当前用户名相同");
+							}
 						}
 					}
 				});
@@ -208,15 +221,15 @@
 			var old_passwd = $('#old_passwd').val();
 			var new_passwd = $('#new_passwd').val();
 			var new_passwd_s = $('#new_passwd_s').val();
-			if(old_passwd.length === 0 || new_passwd.length === 0 || new_passwd_s.length === 0){
+			if(old_passwd.length == 0 || new_passwd.length == 0 || new_passwd_s.length == 0){
 				alert("未完整填写！");
 			}
 			else{
-				if(new_passwd !== new_passwd_s){
+				if(new_passwd != new_passwd_s){
 					alert("两次密码输入不一致！");
 				}
 				else{
-					if(old_passwd === new_passwd){
+					if(old_passwd == new_passwd){
 						alert("新旧密码完全一样，还不如不改！");
 					}
 					else{

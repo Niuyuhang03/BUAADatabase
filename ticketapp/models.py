@@ -29,10 +29,12 @@ class ticket(models.Model):
 class address(models.Model):
     addrid = models.AutoField(primary_key=True)
     addrinfo = models.CharField(max_length=40)
+    userid = models.IntegerField()
 
 class telephone(models.Model):
     teleid = models.AutoField(primary_key=True)
     teleinfo = models.CharField(max_length=40)
+    userid = models.IntegerField()
 
 class user_ticket(models.Model):
     userid = models.IntegerField()

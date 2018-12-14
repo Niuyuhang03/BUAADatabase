@@ -4,14 +4,15 @@
 	<meta charset="utf-8"> 
 	<title>INDEX</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://127.0.0.1:8000/static/css/style.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<style type="text/css">
         .div_left { width: 28%; height: 100%; float:left; position: relative; }
         .div_right { width: 72%; height: 100%; float:right; position: relative; }
-		.div_left_son {width: 50%; height: 100%; float: left; position: relative; background: tomato}
-		.div_right_son {width: 50%; height: 100%; float: right; position: relative; background: skyblue}
+		.div_left_son {width: 50%; height: 100%; float: left; position: relative;}
+		.div_right_son {width: 50%; height: 100%; float: right; position: relative;}
     </style>
 </head>
 
@@ -35,17 +36,25 @@
 	<div>
 
 	<div class="div_left">
-		<h1>用户信息栏</h1>
-		<img id="user_pic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" style="width:200px; height:100px" alt="头像">
-		<h2 id="user_id">用户id:</h2>
-		<h2 id="user_name">用户名称:</h2>
-		<h2 id="user_sex">用户性别:</h2>
+		<div class="box">
+            <ul>
+                <li>
+					<img id="userpic" src="http://127.0.0.1:8000/static/images/userImages/0.jpg" width="190" height="190" alt="">
+                    <div class="cover">
+                        <h4 id="username"></h4>
+                        <h4 id="usersex"></h4>
+						<h4 id="useraddr"></h4>
+						<h4 id="usertele"></h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
 	</div>
 	
 	<div class="div_right">
 		<div style="visibility: visible; width:100%; height: 300px;">
 			<div class="div_left_son">
-				<img id="good_pic" src="http://127.0.0.1:8000/static/images/ticketImages/0.jpg" alt="商品图片" style="width:400px; height:200px">
+				<img id="good_pic" src="http://127.0.0.1:8000/static/images/ticketImages/0.jpg" alt="商品图片" style="width:553px; height:300px">
 			</div>	
 
 			<div class="div_right_son">
@@ -57,10 +66,10 @@
 
 		</div>
 		
-		<div style="width: 100%; height:100px; background: seagreen">
-			<p id="good_dec">商品描述：</p>
+		<div style="width: 100%; height:100px;">
+			<h3 id="good_dec">商品描述：</h3>
 		</div>
-		<button id="purchase" class="btn btn-primary" style="margin-left:100px; margin-top: 20px; visibility: hidden">购买</button>
+		<button id="purchase" class="btn btn-primary" style="margin-left:0px; margin-top: 20px; visibility: hidden">购买</button>
 		
 	</div>
 
@@ -81,10 +90,11 @@
 					//TODO:头像
 					console.log(result);
 					user_id = result['userid'];
-					$('#user_id').append(result['userid']);
-					$('#user_name').append(result['username']);
-					$('#user_sex').append(result['sex']);
-					$('#user_pic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
+					$('#username').append(result['username']);
+					$('#usersex').append(result['sex']);
+					$('#useraddr').append(result['addr']);
+					$('#usertele').append(result['tele']);
+					$('#userpic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
 				}
 			});
 		});
@@ -112,7 +122,7 @@
 					$('#good_price').append(result['price']);
 					$('#good_pic').attr('src', 'http://127.0.0.1:8000/static/images/ticketImages/'+result['img']);
 					var is_hidden = result['status'];
-					if(is_hidden === 0) {
+					if(is_hidden == 0) {
 						document.getElementById('purchase').style.visibility = "visible";
 					}
 				}  
@@ -142,10 +152,10 @@
 					success: function(result){
 						//TODO:返回详细的信息
 						console.log(result);
-						if(result === 0){
+						if(result == 0){
 							alert("购买失败，当前商品由您发布");
 						}
-						else if (result === 2) {
+						else if (result == 2) {
 							alert("购买失败，当前商品已售出");
 						}
 						else{

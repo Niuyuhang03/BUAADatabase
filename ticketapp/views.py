@@ -57,7 +57,10 @@ def ajax_register(request):
             is_register = 1
             return HttpResponse(is_register)
         except:
-            models.user.objects.create(username=data['username'], userpwd=data['passwd'], usersex=data['usersex'])
+            cur_user = models.user(username=data['username'], userpwd=data['passwd'], usersex=data['usersex'])
+            cur_user.save()
+            models.address.objects.create(userid=cur_user.userid, addrinfo="")
+            models.telephone.objects.create(userid=cur_user.userid, teleinfo="")
             is_register = 0
             return HttpResponse(is_register)
 
@@ -84,8 +87,8 @@ def ajax_log_out(request):
 
 def ajax_showinfo(request):
     if request.method == 'GET':
-        cur_user = models.user.objects.get(userid=request.session['userid'])
-        return_data = {'userid':cur_user.username, "username":cur_user.username, "sex":cur_user.usersex, "userimg":cur_user.userimg}
+        cur_user = models.user.objects.get(userid=request.session.get('userid'))
+        return_data = {"username":cur_user.username, "sex":cur_user.usersex, "userimg":cur_user.userimg, "addr":models.address.objects.get(userid=cur_user.userid).addrinfo, "tele":models.telephone.objects.get(userid=cur_user.userid).teleinfo}
         return JsonResponse(return_data)
 
 def ajax_search(request):
@@ -130,17 +133,34 @@ def ajax_purchase(request):
 
 def ajax_modi_info(request):
     if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
         # succ = 1:修改成功 0:用户名已存在，修改失败 2:新用户名和当前用户名相同，修改失败
         try:
-            cur_user = models.user.objects.get(username=data['name'])
+            cur_user = models.user.objects.get(username=request.POST.get('name'))
             if request.session.get('userid') == cur_user.userid:
                 succ = 2
             else:
                 succ = 0
         except:
             succ = 1
-            models.user.objects.filter(pk=request.session.get('userid')).update(usersex=data['sex'], username=data['name'])
+            models.user.objects.filter(pk=request.session.get('userid')).update(usersex=request.POST.get('sex'), username=request.POST.get('name'))
+            models.address.objects.filter(userid=request.session.get('userid')).update(addrinfo=request.POST.get('addr'))
+            models.telephone.objects.filter(userid=request.session.get('userid')).update(teleinfo=request.POST.get('tele'))
+            file_obj = request.FILES.get('file')
+            if file_obj:  # 处理附件上传到方法
+                request_set = {}
+                print('file--obj', file_obj)
+                # user_home_dir = "upload/%s" % (request.user.userprofile.id)
+                accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/userImages'
+                # if not os.path.isdir(accessory_dir):
+                #     os.mkdir(accessory_dir)
+                upload_file = "%s/%s" % (accessory_dir, str(request.session.get('userid')) + ".JPG")
+                recv_size = 0
+                f = open(upload_file, 'wb')
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+                f.close()
+                models.user.objects.filter(userid=request.session.get('userid')).update(
+                    userimg=str(request.session.get('userid')) + ".JPG")
         return HttpResponse(succ)
 
 def ajax_modi_passwd(request):
@@ -201,23 +221,3 @@ def ajax_release(request):
         models.user_ticket.objects.create(userid=request.session.get('userid'), ticketid=cur_ticket.ticketid)
         succ = 1
         return HttpResponse(succ)
-
-
-def ajax_uploadimg(request):
-    if request.method == 'POST':
-        file_obj = request.FILES.get('file')
-        if file_obj:  # 处理附件上传到方法
-            request_set = {}
-            print('file--obj', file_obj)
-            # user_home_dir = "upload/%s" % (request.user.userprofile.id)
-            accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/userImages'
-            # if not os.path.isdir(accessory_dir):
-            #     os.mkdir(accessory_dir)
-            upload_file = "%s/%s" % (accessory_dir, str(request.session.get('userid'))+".JPG")
-            recv_size = 0
-            f = open(upload_file, 'wb')
-            for chunk in file_obj.chunks():
-                f.write(chunk)
-            f.close()
-            models.user.objects.filter(userid=request.session.get('userid')).update(userimg=str(request.session.get('userid'))+".JPG")
-            return HttpResponse(1)
