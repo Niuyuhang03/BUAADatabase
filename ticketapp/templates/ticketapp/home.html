@@ -92,8 +92,6 @@
 				type: "GET",
 				url:"http://127.0.0.1:8000/ticket/ajax_showinfo/",
 				success: function(result){
-					//TODO:头像
-					console.log(result);
 					$('#username').append(result['username']);
 					$('#usersex').append(result['sex']);
 					$('#useraddr').append(result['addr']);

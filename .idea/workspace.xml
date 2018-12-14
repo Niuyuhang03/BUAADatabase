@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ccad2a69-00f1-4110-8d42-b43a34f51c1e" name="Default Changelist" comment="update img">
+    <list default="true" id="ccad2a69-00f1-4110-8d42-b43a34f51c1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0002_ticket_order_user_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0003_auto_20181213_2132.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0004_user_userimg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0005_auto_20181213_2306.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/migrations/0006_ticket_ticketimg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/static/images/ticketImages/0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/static/images/ticketImages/0.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/static/images/userImages/0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/static/images/userImages/0.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticketapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ticketapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ticketapp/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,12 +16,12 @@
     <session id="680184416">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.4" value="5" />
+          <entry key="project.open.time.4" value="6" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -48,7 +34,8 @@
         <counts>
           <entry key="Git file" value="1" />
           <entry key="HTML" value="75" />
-          <entry key="Python" value="46" />
+          <entry key="Image" value="2" />
+          <entry key="Python" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -60,9 +47,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="20" />
-          <entry key="HTML" value="1525" />
-          <entry key="PLAIN_TEXT" value="161" />
-          <entry key="Python" value="4077" />
+          <entry key="HTML" value="1569" />
+          <entry key="PLAIN_TEXT" value="243" />
+          <entry key="Python" value="4086" />
         </counts>
       </usages-collector>
     </session>
@@ -72,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="89" column="79" selection-start-line="89" selection-start-column="79" selection-end-line="89" selection-end-column="79" />
+            <state relative-caret-position="125">
+              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -81,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
+            <state relative-caret-position="147">
+              <caret line="107" selection-start-line="107" selection-end-line="107" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -93,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="-198">
               <caret line="41" column="129" selection-start-line="41" selection-start-column="129" selection-end-line="41" selection-end-column="129" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -107,16 +94,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
+            <state relative-caret-position="158">
+              <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
+            <state relative-caret-position="858">
               <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
             </state>
           </provider>
@@ -125,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="902">
               <caret line="41" selection-start-line="41" selection-end-line="41" selection-end-column="129" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -139,8 +126,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticketapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+            <state relative-caret-position="352">
+              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -170,7 +157,6 @@
       <find>time</find>
       <find>USE_TZ</find>
       <find>SESSION_COOKIE_HTTPONLY</find>
-      <find>print</find>
       <find>good_id</find>
       <find>prize</find>
       <find>windo</find>
@@ -183,8 +169,10 @@
       <find>!==</find>
       <find>===</find>
       <find>20</find>
-      <find>session[</find>
       <find>pic</find>
+      <find>session[</find>
+      <find>print</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
       <replace>==</replace>
@@ -207,12 +195,13 @@
         <option value="$PROJECT_DIR$/ticketsystem/settings.example.py" />
         <option value="$PROJECT_DIR$/ticketapp/models.py" />
         <option value="$PROJECT_DIR$/ticketapp/urls.py" />
-        <option value="$PROJECT_DIR$/ticketapp/views.py" />
         <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html" />
-        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html" />
         <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html" />
         <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html" />
         <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html" />
+        <option value="$PROJECT_DIR$/ticketapp/views.py" />
+        <option value="F:/python/字符画/pic2str.py" />
+        <option value="$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html" />
       </list>
     </option>
   </component>
@@ -244,6 +233,35 @@
               <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
               <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketImages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="userImages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="ticketapp" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -267,7 +285,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="add_unversioned_files" value="true&#10;F:/BUAA/数据库/课设/任务2/ticketsystem/ticketsystem/settings.py" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="F:/python/字符画/pic2str.py" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
@@ -286,6 +304,34 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="pic2str" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ticketsystem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="F:/python/字符画" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="F:/python/字符画/pic2str.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.pic2str" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -354,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544719606137</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add tele and address, fix bugs about tab and 4space in &lt;img&gt;">
+      <created>1544778853816</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1544778853816</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -362,15 +415,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18295905" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18295905" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.4993395" weight="0.20283689" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.4993395" visible="true" weight="0.2567376" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5006605" side_tool="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32907802" />
       <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="6" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.32907802" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -391,7 +444,8 @@
     <MESSAGE value="fix bugs about session" />
     <MESSAGE value="update sign, personpage, release and home" />
     <MESSAGE value="update img" />
-    <option name="LAST_COMMIT_MESSAGE" value="update img" />
+    <MESSAGE value="add tele and address, fix bugs about tab and 4space in &lt;img&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tele and address, fix bugs about tab and 4space in &lt;img&gt;" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ticketapp/templates/index.html" />
@@ -469,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ticketapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ticketapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -486,19 +533,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ticketapp/views.py">
+    <entry file="file://$PROJECT_DIR$/ticketapp/static/images/ticketImages/0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/static/images/userImages/0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="89" column="79" selection-start-line="89" selection-start-column="79" selection-end-line="89" selection-end-column="79" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="858">
+          <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/personpage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="902">
           <caret line="41" selection-start-line="41" selection-end-line="41" selection-end-column="129" />
           <folding>
             <element signature="n#style#0;n#button#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -508,16 +558,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html">
+    <entry file="file://$PROJECT_DIR$/ticketapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
+        <state relative-caret-position="352">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ticketapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/python/字符画/pic2str.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="29" column="56" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="-198">
           <caret line="41" column="129" selection-start-line="41" selection-start-column="129" selection-end-line="41" selection-end-column="129" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -527,17 +601,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/purchase.html">
+    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ticketapp/templates/ticketapp/release.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="39" column="129" selection-start-line="39" selection-start-column="129" selection-end-line="39" selection-end-column="129" />
+        <state relative-caret-position="147">
+          <caret line="107" selection-start-line="107" selection-end-line="107" selection-end-column="30" />
         </state>
       </provider>
     </entry>

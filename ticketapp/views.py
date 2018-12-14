@@ -16,28 +16,24 @@ def index(request, id):
         return HttpResponseRedirect("../../sign/")
 
 def home(request):
-    print (request.session.get('userid'))
     if request.session.get('userid'):
         return render(request, "ticketapp/home.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def personpage(request):
-    print(request.session.get('userid'))
     if request.session.get('userid'):
         return render(request, "ticketapp/personpage.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def release(request):
-    print(request.session.get('userid'))
     if request.session.get('userid'):
         return render(request, "ticketapp/release.html")
     else:
         return HttpResponseRedirect("../sign/")
 
 def purchase(request):
-    print(request.session.get('userid'))
     if request.session.get('userid'):
         return render(request, "ticketapp/purchase.html")
     else:
@@ -105,8 +101,6 @@ def ajax_goodinfo(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         cur_ticket = models.ticket.objects.get(ticketid=data['good_id'])
-        print("status")
-        print(cur_ticket.ticketstatus)
         return_data = {
             "name": cur_ticket.ticketname, "date": cur_ticket.tickettime, "address": cur_ticket.ticketlocation, "dec": cur_ticket.ticketinfo, "price": cur_ticket.ticketprice, "status": cur_ticket.ticketstatus, "img": cur_ticket.ticketimg
         }
@@ -121,7 +115,6 @@ def ajax_purchase(request):
                 succ = 0
             else:
                 models.ticket.objects.filter(ticketid=data['good_id']).update(ticketstatus=1)
-                print(datetime.datetime.now())
                 cur_order = models.orderlist(ordertime=datetime.datetime.now())
                 cur_order.save()
                 models.user_order.objects.create(userid=request.session.get('userid'), orderid=cur_order.orderid)
@@ -148,7 +141,6 @@ def ajax_modi_info(request):
             file_obj = request.FILES.get('file')
             if file_obj:  # 处理附件上传到方法
                 request_set = {}
-                print('file--obj', file_obj)
                 # user_home_dir = "upload/%s" % (request.user.userprofile.id)
                 accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/userImages'
                 # if not os.path.isdir(accessory_dir):
@@ -206,7 +198,6 @@ def ajax_release(request):
         file_obj = request.FILES.get('file')
         if file_obj:  # 处理附件上传到方法
             request_set = {}
-            print('file--obj', file_obj)
             # user_home_dir = "upload/%s" % (request.user.userprofile.id)
             accessory_dir = 'F:/BUAA/数据库/课设/任务2/ticketsystem/ticketapp/static/images/ticketImages'
             # if not os.path.isdir(accessory_dir):
