@@ -1,0 +1,9 @@
+* { margin: 0; padding: 0; }
+body { font-family: "Microsoft yahei", Arial; background: #eee; }
+.box { width: 500px; height: 500px; margin: 50px auto; }
+.box ul li { float: left; width: 190px; height: 190px; background: #979797; margin: 10px; list-style: none; position: relative; overflow: hidden; }
+.box ul li .cover a { width: 30px; height: 30px; background: #ffffff; display: block; border-radius: 50%; margin: 30px auto; }
+.box ul li .cover a i { color: rgba(39, 140, 255, 0.7); }
+.box ul li .cover { width: 190px; height: 190px; background: rgba(39, 140, 255, 0.7); position: absolute; left: 0; top: 0; text-align: center; color: #ffffff; transform-origin: right bottom; -webkit-transform-origin: right bottom; -moz-transform-origin: right bottom; transform: rotate(90deg); -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); transition: all 0.35s; -webkit-transition: all 0.35s; -moz-transition: all 0.35s; }
+.box ul li .cover p { margin-top: 10px; font-size: 14px; }
+.box ul li:hover .cover { transform: rotate(0deg); -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); }
