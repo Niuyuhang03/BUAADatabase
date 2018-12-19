@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"> 
+	<meta charset="utf-8">
+	<link REL="SHORTCUT ICON" HREF="http://127.0.0.1:8000/static/images/favicon.ico"/>
 	<title>二手票务交易网</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://127.0.0.1:8000/static/css/style.css">
@@ -96,7 +97,7 @@
 					$('#usersex').append(result['sex']);
 					$('#useraddr').append(result['addr']);
 					$('#usertele').append(result['tele']);
-					$('#userpic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']);
+					$('#userpic').attr('src', 'http://127.0.0.1:8000/static/images/userImages/'+result['userimg']+'?'+Math.random());
 				}
 			});
 		});
@@ -104,6 +105,10 @@
 		//TODO:搜索button的click函数
 		//TODO:搜索结果的隐藏与显示
 		$('#search_btn').click(function(){
+			var none_result_div = document.getElementById('none_result');
+			var search_result_div = document.getElementById('search_result');
+			none_result_div.style.visibility = "hidden";
+			search_result_div.style.visibility = "hidden";
 			var info = $('#search_info').val();
 			console.log(info);
 			var result_table = document.getElementById('result_table');
@@ -115,8 +120,7 @@
 			else{
 				var data = {'info':info};
 				console.log(data);
-				var none_result_div = document.getElementById('none_result');
-				var search_result_div = document.getElementById('search_result');
+
 				$.ajax({
 					type: "POST",
 					url:"http://127.0.0.1:8000/ticket/ajax_search/",

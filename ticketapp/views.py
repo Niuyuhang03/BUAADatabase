@@ -16,6 +16,7 @@ def index(request, id):
         return HttpResponseRedirect("../../sign/")
 
 def home(request):
+    print(request.session.get('userid'))
     if request.session.get('userid'):
         return render(request, "ticketapp/home.html")
     else:
