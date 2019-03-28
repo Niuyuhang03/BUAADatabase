@@ -10,16 +10,19 @@ MySQL无撤销指令
 
     ``` MySQL
     net start mysql//启动服务
-
+    
     mysql -u root -p//登陆
-
+    
     SHOW databases;//选择数据库
     USE crashcourse;
-
+    
     CREATE database xxx;//创建数据库
     DROP database xxx;//删除数据库
-
+    
     SHOW tables;//选择表
+    
+    select host,user,authentication_string from mysql.user;//查询所有用户
+    create user "username"@"host" identified by "password";//新建用户
     ```
 
 2. 创建表、删除表
